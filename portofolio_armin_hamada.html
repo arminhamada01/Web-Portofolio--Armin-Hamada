@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armin Hamada Layn | Portfolio</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration for Custom Colors (Navy, Gold, Light) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#0A192F', // Deep Navy Blue
+                            light: '#112240',
+                            lighter: '#233554'
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37', // Elegant Gold
+                            light: '#F3E5AB',
+                            dark: '#AA8C2C'
+                        },
+                        light: {
+                            DEFAULT: '#F9FAFB', // Off-white/very light gray for background
+                            card: '#FFFFFF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for smooth transitions and subtle enhancements */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9FAFB;
+            color: #0A192F;
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #D4AF37, #AA8C2C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #D4AF37;
+            border: 2px solid #F9FAFB;
+        }
+        .timeline-line::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 24px;
+            bottom: -32px;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        /* Mobile menu toggle */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 300px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold selection:text-navy">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold text-navy tracking-tight">Armin<span class="text-gold">.</span></a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-gray-600 hover:text-gold font-medium transition-colors duration-200">About</a>
+                    <a href="#experience" class="text-gray-600 hover:text-gold font-medium transition-colors duration-200">Experience</a>
+                    <a href="#projects" class="text-gray-600 hover:text-gold font-medium transition-colors duration-200">Projects</a>
+                    <a href="#skills" class="text-gray-600 hover:text-gold font-medium transition-colors duration-200">Skills</a>
+                    <a href="#contact" class="px-5 py-2.5 bg-navy text-white font-medium rounded-lg hover:bg-navy-light transition-all duration-300 shadow-md hover:shadow-lg border border-transparent hover:border-gold/30">Connect</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-navy hover:text-gold focus:outline-none transition-colors">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gold hover:bg-gray-50 rounded-md">About</a>
+                <a href="#experience" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gold hover:bg-gray-50 rounded-md">Experience</a>
+                <a href="#projects" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gold hover:bg-gray-50 rounded-md">Projects</a>
+                <a href="#skills" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gold hover:bg-gray-50 rounded-md">Skills</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-navy font-bold hover:text-gold bg-gray-50 rounded-md mt-2">Connect</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-gold/5 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-navy/5 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="text-center md:text-left md:w-3/4 lg:w-2/3">
+                <div class="inline-block px-4 py-1.5 rounded-full bg-navy/5 border border-navy/10 text-navy font-semibold text-sm mb-6 tracking-wide uppercase">
+                    <span class="text-gold"><i class="fa-solid fa-star mr-2"></i></span>CUSTOMER-FOCUSED, DIGITALLY DRIVEN
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-navy leading-tight mb-6">
+                    Hi, I'm Armin Hamada <br class="hidden lg:block"/>
+                    <span class="text-gradient">CX Specialist & Creator</span>
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto md:mx-0 leading-relaxed">
+                    Bridging the gap between excellent customer service and modern digital strategy. I turn complex interactions into seamless experiences and create engaging digital content.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-navy rounded-xl hover:bg-navy-light transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                        Let’s Connect and Create Meaningful Digital Experiences
+                        <i class="fa-solid fa-arrow-right ml-2 text-gold"></i>
+                    </a>
+                    <a href="#projects" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-navy bg-white border border-gray-200 rounded-xl hover:border-gold hover:text-gold transition-all duration-300 hover:shadow-md">
+                        View Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <!-- Image/Visual Representation -->
+                <div class="w-full lg:w-5/12 relative">
+                    <div class="absolute inset-0 bg-gold rounded-2xl transform translate-x-4 translate-y-4 opacity-20"></div>
+                    <!-- Placeholder representing the user's professional yet creative persona -->
+                    <img src="https://placehold.co/600x750/0A192F/D4AF37?text=Armin+Hamada\nProfessional+Portrait" alt="Armin Hamada" class="relative z-10 w-full h-auto rounded-2xl shadow-xl object-cover">
+                </div>
+                
+                <!-- Text Content -->
+                <div class="w-full lg:w-7/12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-navy mb-6">About Me</h2>
+                    <div class="w-20 h-1.5 bg-gold mb-8 rounded-full"></div>
+                    
+                    <div class="prose prose-lg text-gray-600">
+                        <p class="mb-4">
+                            I am a highly motivated <strong>Customer Experience Specialist</strong> and <strong>Digital Content Creator</strong> with over 2 years of proven experience in contact center operations, live chat support, and content moderation.
+                        </p>
+                        <p class="mb-4">
+                            My background is deeply rooted in managing high-volume customer interactions where maintaining accuracy, empathy, and strict adherence to SOPs is critical. From solving technical issues to driving direct sales, my goal is always to exceed customer satisfaction targets.
+                        </p>
+                        <p class="mb-6">
+                            Beyond customer support, I have a strong passion for digital strategy. I actively engage in the digital ecosystem as a TikTok Shop Affiliate and a freelance video editor using CapCut, staying ahead of trends to create content that drives conversions and audience engagement.
+                        </p>
+                        
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-gray-100">
+                            <div>
+                                <h4 class="text-3xl font-bold text-navy mb-1">350+</h4>
+                                <p class="text-sm text-gray-500 font-medium">Daily Content Moderated</p>
+                            </div>
+                            <div>
+                                <h4 class="text-3xl font-bold text-navy mb-1">2+ Yrs</h4>
+                                <p class="text-sm text-gray-500 font-medium">Professional Experience</p>
+                            </div>
+                            <div>
+                                <h4 class="text-3xl font-bold text-navy mb-1">100%</h4>
+                                <p class="text-sm text-gray-500 font-medium">Client Satisfaction Drive</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">Professional Experience</h2>
+                <div class="w-20 h-1.5 bg-gold mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">A track record of delivering operational excellence and ensuring platform integrity.</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                <div class="relative pl-8 md:pl-0">
+                    <!-- Vertical Line for Desktop -->
+                    <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200"></div>
+
+                    <!-- Job 1 -->
+                    <div class="relative mb-12 md:mb-16 md:w-1/2 md:pr-12 md:ml-0 text-left w-full group">
+                        <div class="hidden md:block absolute right-[-10px] top-6 w-5 h-5 rounded-full bg-white border-4 border-gold z-10 group-hover:scale-125 transition-transform duration-300"></div>
+                        <div class="md:hidden absolute left-[-37px] top-1 w-4 h-4 rounded-full bg-gold border-2 border-white z-10"></div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                            <span class="text-gold font-semibold text-sm tracking-wider uppercase block mb-1">June 2024 – Dec 2024</span>
+                            <h3 class="text-xl font-bold text-navy mb-1">Agent Content Moderator</h3>
+                            <h4 class="text-md text-gray-500 font-medium mb-4">PT. Transcosmos Indonesia (TikTok)</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2 text-sm">
+                                <li>Moderated 350+ pieces of user-generated content daily to ensure compliance with platform policies.</li>
+                                <li>Handled violation reports regarding hate speech, violence, and inappropriate behavior.</li>
+                                <li>Coordinated with the team to review policies, improving company performance by up to 50%.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div class="relative mb-12 md:mb-16 md:w-1/2 md:pl-12 md:ml-auto text-left w-full group">
+                        <div class="hidden md:block absolute left-[-10px] top-6 w-5 h-5 rounded-full bg-white border-4 border-navy z-10 group-hover:scale-125 transition-transform duration-300"></div>
+                        <div class="md:hidden absolute left-[-37px] top-1 w-4 h-4 rounded-full bg-navy border-2 border-white z-10"></div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                            <span class="text-navy font-semibold text-sm tracking-wider uppercase block mb-1">May 2026 – July 2026</span>
+                            <h3 class="text-xl font-bold text-navy mb-1">Agent Live Chat</h3>
+                            <h4 class="text-md text-gray-500 font-medium mb-4">PT. Mitracomm Ekasarana (XL Smart)</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2 text-sm">
+                                <li>Provided prompt, high-quality customer support via live chat in accordance with SOPs.</li>
+                                <li>Assisted with inquiries related to internet packages, payments, and SIM card activation.</li>
+                                <li>Utilized CRM systems to manage customer data and document case resolutions accurately.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Job 3 -->
+                    <div class="relative mb-12 md:mb-0 md:w-1/2 md:pr-12 md:ml-0 text-left w-full group">
+                        <div class="hidden md:block absolute right-[-10px] top-6 w-5 h-5 rounded-full bg-white border-4 border-gold z-10 group-hover:scale-125 transition-transform duration-300"></div>
+                        <div class="md:hidden absolute left-[-37px] top-1 w-4 h-4 rounded-full bg-gold border-2 border-white z-10"></div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                            <span class="text-gold font-semibold text-sm tracking-wider uppercase block mb-1">Sep 2023 – Nov 2023</span>
+                            <h3 class="text-xl font-bold text-navy mb-1">Agent Contact Center</h3>
+                            <h4 class="text-md text-gray-500 font-medium mb-4">PT. Infomedia Nusantara (Halo BCA)</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2 text-sm">
+                                <li>Handled customer inquiries and complaints via telephone, email, and chat for fast resolution.</li>
+                                <li>Applied SMART SOLUTION service principles to improve the overall customer experience.</li>
+                                <li>Managed customer databases and escalated urgent issues to leadership for immediate action.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">Creative & Digital Projects</h2>
+                <div class="w-20 h-1.5 bg-gold mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Exploring digital landscapes through strategic content creation and social media marketing.</p>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                <!-- Project Card 1 -->
+                <div class="group bg-light rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="relative h-64 overflow-hidden">
+                        <!-- Placeholder Image -->
+                        <img src="https://placehold.co/800x600/0A192F/FFFFFF?text=TikTok+Affiliate\nCampaign+Dashboard" alt="TikTok Affiliate Strategy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors duration-300"></div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-navy">Jan 2025 - Present</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-2 mb-3">
+                            <i class="fa-brands fa-tiktok text-navy text-xl"></i>
+                            <span class="text-gold font-semibold text-sm uppercase tracking-wider">Digital Marketing</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-navy mb-3">TikTok Shop Affiliate</h3>
+                        <p class="text-gray-600 mb-6 line-clamp-3">
+                            Developing and executing digital marketing strategies by promoting products through engaging short-form video content. Analyzing product performance and audience engagement metrics to drive maximum conversions.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-md text-xs font-medium text-gray-600">Content Strategy</span>
+                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-md text-xs font-medium text-gray-600">Analytics</span>
+                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-md text-xs font-medium text-gray-600">Conversion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="group bg-light rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="relative h-64 overflow-hidden">
+                        <!-- Placeholder Image -->
+                        <img src="https://placehold.co/800x600/D4AF37/0A192F?text=CapCut+Video\nEditing+Timeline" alt="CapCut Content Creator" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-navy/10 group-hover:bg-transparent transition-colors duration-300"></div>
+                        <div class="absolute top-4 right-4 bg-navy/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-gold">Jan 2025 - Present</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-2 mb-3">
+                            <i class="fa-solid fa-clapperboard text-navy text-xl"></i>
+                            <span class="text-gold font-semibold text-sm uppercase tracking-wider">Content Creation</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-navy mb-3">CapCut Clipper Campaign</h3>
+                        <p class="text-gray-600 mb-6 line-clamp-3">
+                            Producing trend-based short-form video content tailored for international social media platforms. Applying advanced editing techniques including cutting, seamless transitions, and precise audio syncing to maximize audience reach.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-md text-xs font-medium text-gray-600">Video Editing</span>
+                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-md text-xs font-medium text-gray-600">Trend Analysis</span>
+                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-md text-xs font-medium text-gray-600">Social Media</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-light border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                
+                <div class="w-full md:w-1/3">
+                    <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">Core <br>Competencies</h2>
+                    <div class="w-16 h-1.5 bg-gold mb-6 rounded-full"></div>
+                    <p class="text-gray-600">
+                        A dual-threat skill set combining rigorous operational customer service standards with modern digital marketing and creative capabilities.
+                    </p>
+                </div>
+
+                <div class="w-full md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    
+                    <!-- CX Skills -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center text-gold">
+                                <i class="fa-solid fa-headset text-lg"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy">Customer Experience</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full shadow-sm">Complaint Handling</span>
+                            <span class="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full shadow-sm">Live Chat Support</span>
+                            <span class="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full shadow-sm">Call Center Ops</span>
+                            <span class="px-4 py-2 bg-navy text-white text-sm font-medium rounded-full shadow-sm">CRM & Ticketing (Avaya)</span>
+                        </div>
+                    </div>
+
+                    <!-- Digital Skills -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-navy">
+                                <i class="fa-solid fa-laptop-code text-lg"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy">Digital & Content</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 border border-gold text-navy bg-gold/5 text-sm font-medium rounded-full shadow-sm">Content Moderation</span>
+                            <span class="px-4 py-2 border border-gold text-navy bg-gold/5 text-sm font-medium rounded-full shadow-sm">Social Media Mgt</span>
+                            <span class="px-4 py-2 border border-gold text-navy bg-gold/5 text-sm font-medium rounded-full shadow-sm">TikTok Affiliate</span>
+                            <span class="px-4 py-2 border border-gold text-navy bg-gold/5 text-sm font-medium rounded-full shadow-sm">Video Editing (CapCut)</span>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 sm:col-span-2">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-navy">
+                                <i class="fa-solid fa-user-group text-lg"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy">Professional Soft Skills</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="flex items-center gap-2 text-gray-700 font-medium bg-gray-50 px-4 py-2 rounded-lg border border-gray-200"><i class="fa-solid fa-check text-gold"></i> Problem Solving</span>
+                            <span class="flex items-center gap-2 text-gray-700 font-medium bg-gray-50 px-4 py-2 rounded-lg border border-gray-200"><i class="fa-solid fa-check text-gold"></i> Analytical Thinking</span>
+                            <span class="flex items-center gap-2 text-gray-700 font-medium bg-gray-50 px-4 py-2 rounded-lg border border-gray-200"><i class="fa-solid fa-check text-gold"></i> Adaptability</span>
+                            <span class="flex items-center gap-2 text-gray-700 font-medium bg-gray-50 px-4 py-2 rounded-lg border border-gray-200"><i class="fa-solid fa-check text-gold"></i> Target-Oriented</span>
+                            <span class="flex items-center gap-2 text-gray-700 font-medium bg-gray-50 px-4 py-2 rounded-lg border border-gray-200"><i class="fa-solid fa-check text-gold"></i> Attention to Detail</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-navy relative overflow-hidden">
+        <!-- Abstract shape -->
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 border-[30px] border-gold/10 rounded-full"></div>
+        <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-navy-light rounded-full blur-3xl"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Ready to create impact together?</h2>
+            <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+                Whether you're looking for a dedicated Customer Experience specialist or a strategic Digital Content creator, I'm ready to bring value to your team.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="mailto:arminhamada01@gmail.com" class="flex items-center justify-center gap-3 px-8 py-4 bg-gold text-navy font-bold rounded-xl hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                    <i class="fa-solid fa-envelope text-xl"></i>
+                    Email Me
+                </a>
+                <a href="https://wa.me/628587713853" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 px-8 py-4 bg-transparent border-2 border-gold/50 text-white font-bold rounded-xl hover:border-gold hover:bg-gold/10 transition-all duration-300">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    WhatsApp
+                </a>
+            </div>
+
+            <div class="mt-16 flex justify-center gap-6">
+                <a href="https://www.linkedin.com/in/armin-hamada-9815a8237" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-navy-light flex items-center justify-center text-white hover:bg-gold hover:text-navy transition-all duration-300">
+                    <i class="fa-brands fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full bg-navy-light flex items-center justify-center text-white hover:bg-gold hover:text-navy transition-all duration-300">
+                    <i class="fa-brands fa-tiktok text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-lighter py-8 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-400 text-sm">
+                &copy; <script>document.write(new Date().getFullYear())</script> Armin Hamada Layn. All rights reserved.
+            </div>
+            <div class="text-gray-400 text-sm flex items-center gap-2">
+                Designed with <i class="fa-solid fa-heart text-gold text-xs"></i> for digital excellence.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuLinks = mobileMenu.querySelectorAll('a');
+
+            // Toggle menu
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('open');
+                // Change icon
+                const icon = menuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close menu when clicking a link
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                    const icon = menuBtn.querySelector('i');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
